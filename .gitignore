@@ -1,0 +1,14 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# client data and run output
+runs/
+config/*
+!config/client.example.json
+!config/suppression_domains.example.txt
+
+__pycache__/
+*.pyc
+.DS_Store
