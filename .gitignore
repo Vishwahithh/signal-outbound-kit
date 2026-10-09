@@ -8,6 +8,7 @@ runs/
 config/*
 !config/client.example.json
 !config/suppression_domains.example.txt
+!config/voc_bank.example.md
 
 __pycache__/
 *.pyc

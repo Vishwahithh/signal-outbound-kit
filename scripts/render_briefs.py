@@ -29,6 +29,7 @@ def values(cfg):
         "PRIORITY": " > ".join(cfg["signal_priority"]),
         "PROOF": "\n".join(f"   {p['id']} ({p['fits']}): {p['line']}" for p in cfg["copy"]["proof"]),
         "COPY_RULES": "\n".join(f"- {r}" for r in cfg["copy"]["rules"]),
+        "VOC_BANK": cfg["copy"].get("voc_bank", "config/voc_bank.md"),
     }
 
 

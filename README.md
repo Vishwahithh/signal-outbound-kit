@@ -12,7 +12,8 @@ fit. This kit grades first and pays later:
 
 ```
 spec -> source (native filters) -> suppress -> grade on own website -> signal research + human review
-     -> reveal verified emails for A/B only -> verify -> copy on the signal -> launch -> CRM cool-down and routing
+     -> reveal verified emails for A/B only -> verify -> person research -> copy per person -> gate + blind score
+     -> launch -> CRM cool-down and routing
 ```
 
 See [PIPELINE.md](PIPELINE.md) for the gates and the lessons behind each one.
@@ -28,10 +29,13 @@ See [PIPELINE.md](PIPELINE.md) for the gates and the lessons behind each one.
 | `scripts/firecrawl_refetch.py` | Re-read sites that blocked the free crawler |
 | `scripts/merge.py` | One lead master per run, with email-domain mismatch flags |
 | `scripts/mv_verify.py` | MillionVerifier bulk verification with resume (never re-upload) |
+| `scripts/person_research.py` | One dossier per company: buying group, each exec's own recent LinkedIn posts, the company's site, the reviewed signal (Apify, cents per company; optional Explorium events) |
+| `scripts/copy_check.py` | Deterministic gate on persona copy: length, banned phrases, proof verbatim, dated and sourced facts, subject, LinkedIn note |
 | `scripts/render_briefs.py` | Fill the agent briefs from the config, with signal windows as real dates |
 | `scripts/attio_*.py` | Attio as the CRM: fields, import, cool-down, nightly score and route, deals |
-| `templates/briefs/` | Agent briefs: grading, signal research, email one |
-| `.claude/skills/` | `market-map` and `signal-research` skills for Claude Code |
+| `templates/briefs/` | Agent briefs: grading, signal research, email one on the signal, persona copy from a dossier |
+| `config/voc_bank.example.md` | Format for a voice-of-customer phrase bank: how the buyers really talk, used to shape questions, never quoted |
+| `.claude/skills/` | `market-map`, `signal-research` and `person-copy` skills for Claude Code |
 
 ## Setup
 
@@ -57,6 +61,9 @@ python scripts/merge.py
 python scripts/prospeo_harvest.py reveal --approved runs/<run>/approved.csv
 python scripts/merge.py && python scripts/mv_verify.py --input runs/<run>/leads_master.csv --label primary
 # research agents on runs/<run>/briefs/research.md, human review, then copy
+python scripts/person_research.py            # dossiers for reviewed companies (runs/<run>/research/people_companies.json)
+# copy agents on runs/<run>/briefs/persona_copy.md, then:
+python scripts/copy_check.py
 python scripts/attio_leads.py setup && python scripts/attio_leads.py import-run && python scripts/attio_score.py
 ```
 

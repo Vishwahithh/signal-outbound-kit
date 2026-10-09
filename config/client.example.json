@@ -72,6 +72,7 @@
   "signal_priority": ["S1", "S8", "S2", "S3", "S5", "S6", "S4", "S7"],
 
   "copy": {
+    "voc_bank": "config/voc_bank.md",
     "proof": [
       {"id": 0, "fits": "enterprise platforms", "line": "REPLACE: one real, client-approved result for this kind of company (metric + generic descriptor, no client names)"},
       {"id": 1, "fits": "product-led SaaS with tiers or self-serve", "line": "REPLACE: one real, client-approved result"},

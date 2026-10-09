@@ -30,6 +30,7 @@ added after skipping it cost real money or a real domain.
 | Missing data | Verdicts are three-valued: has / has-not / could-not-read. The third is excluded from every percentage | "93% show no price" turned out to be measuring our own crawler |
 | 2 Human signal review | A person reads every "verified" signal before copy | 20% of agent-verified signals were useless: absorbed companies, waitlists, integrations, partner "commitments" |
 | 3 Contacts | Verifier "ok" only; no catch-all; never build first.last@ from a name | Guessed and catch-all addresses bounce, and bounces burn sending domains |
+| Person research | Professional footprint only (role, company, their own posts); open one dossier by hand before the batch | Copy without the person's own words scored 4.6/10 with a prospect-eye reviewer; with dossiers, gate and a phrase bank it reached 6.3 |
 | 4 Copy | Facts only; never judge the prospect's business; proof only from the approved list; no links/pixel in email one | Tracking pixel and auto-linked domains put a seed test in spam |
 | Launch | Kill rule written before the first send | Without one, a dead campaign runs for weeks |
 | Infra | One inbox belongs to one client; 3 inboxes per domain; domains owned by the operator; warmup checked ON via API | Warmup was silently off on 10 new inboxes |
