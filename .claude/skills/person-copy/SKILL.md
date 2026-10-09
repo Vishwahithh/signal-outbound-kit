@@ -21,11 +21,16 @@ they now own.
 `config/voc_bank.md`, format in `config/voc_bank.example.md`. It is what makes the question sound like a peer; build
 it before the first copy run and reuse it.
 
-## 3. Copy
-- `python scripts/render_briefs.py`, then copy agents on `runs/<run>/briefs/persona_copy.md`, about 5 companies each,
-  writing `runs/<run>/copy/<batch>.jsonl`.
-- `python scripts/copy_check.py` and send every FAIL back to its agent. Common fails: subject over 4 words, an undated
-  fact, a reworded proof line.
+## 3. Insights, then copy (two separate passes)
+- `python scripts/render_briefs.py`.
+- Insight agents on `runs/<run>/briefs/insights.md`, about 5 companies each, writing `runs/<run>/insights/<batch>.jsonl`:
+  3 company + 3 person insights, each with dated evidence, confidence (verified / inferred / guess) and relevance
+  0-10, then one chosen insight, one angle and a tier per person (personal / company / skip). No emails here.
+- Copy agents on `runs/<run>/briefs/persona_copy.md`, reading ONLY the insights file (not the dossiers), writing
+  `runs/<run>/copy/<batch>.jsonl`. Keeping the writer away from the raw research stops it drifting to stock lines.
+- `python scripts/copy_check.py` and send every FAIL back to its agent. Common fails: subject over 4 words, an
+  undated fact, a reworded proof line.
+- The insights file doubles as the call prep sheet for whoever takes the meeting.
 
 ## 4. Blind score before anyone sends
 Give a reviewer agent each email plus only what the recipient knows (their company, role, posts) and ask, as the
@@ -35,5 +40,8 @@ Rewrite anything under 6. Lessons from scoring rounds:
 - Mechanics questions (tiers, discounts, margins) are either public or confidential; ask about the decision instead.
 - Same four beats for everyone at one company: one forwarded email exposes the rest.
 - The best-scoring emails asked a question only someone doing that job would ask, in their own words.
+- Insight-first (v4) beat writing straight from the dossier (v3) in a shuffled blind test of the same 29 people:
+  researched 7.1 vs 6.6, "would not reply" 7 vs 12. Human-sounding stayed level (5.5): the remaining template
+  tells are the fixed proof sentence and rotating closers, so vary those next.
 
 Then the client reads a sample before launch, as with every other stage.
