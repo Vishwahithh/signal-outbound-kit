@@ -38,7 +38,11 @@ def check(r, dossier, proof):
     if pid is not None:
         if pid not in proof:
             f.append("proof_id")
-        elif proof[pid] not in e:
+        elif proof[pid].get("facts"):
+            miss = [x for x in proof[pid]["facts"] if x.lower() not in low]   # wording free, facts exact
+            if miss:
+                f.append("proof facts missing: " + ", ".join(miss))
+        elif proof[pid]["line"] not in e:
             f.append("proof not verbatim")
     wn = r.get("why_now") or []
     if not wn or any(not (x.get("date") and x.get("source")) for x in wn):
@@ -63,7 +67,7 @@ def check(r, dossier, proof):
 
 def main():
     cfg = config()
-    proof = {p["id"]: p["line"] for p in cfg["copy"]["proof"]}
+    proof = {p["id"]: p for p in cfg["copy"]["proof"]}
     copy_dir, dossiers = run_dir(cfg, "copy"), run_dir(cfg, "dossiers")
     pattern = next((a for a in sys.argv[1:] if not a.startswith("--") and not a.endswith(".json")), "*.jsonl")
     rows = []

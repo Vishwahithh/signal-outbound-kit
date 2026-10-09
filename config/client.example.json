@@ -74,9 +74,18 @@
   "copy": {
     "voc_bank": "config/voc_bank.md",
     "proof": [
-      {"id": 0, "fits": "enterprise platforms", "line": "REPLACE: one real, client-approved result for this kind of company (metric + generic descriptor, no client names)"},
-      {"id": 1, "fits": "product-led SaaS with tiers or self-serve", "line": "REPLACE: one real, client-approved result"},
-      {"id": 2, "fits": "everything else", "line": "REPLACE: one real, client-approved result"}
+      {"id": "price_rise", "descriptor": "an enterprise platform business",
+       "line": "REPLACE: one real, client-approved result, e.g. 15% more revenue from a targeted price increase, no key accounts lost",
+       "facts": ["enterprise platform", "15%", "key accounts"],
+       "solves": "raising prices on an existing base without losing customers; renewals; fear of churn"},
+      {"id": "tiers", "descriptor": "a SaaS business",
+       "line": "REPLACE: e.g. conversion up 17% and new customers up 10% after replacing a single price with clear tiers",
+       "facts": ["17%", "10%", "tiers"],
+       "solves": "packaging: what is in the base plan and what is paid extra; a new module that needs a place in the plans"},
+      {"id": "new_product", "descriptor": "a software business",
+       "line": "REPLACE: e.g. won a six-figure deal after revising its product and pricing offer",
+       "facts": ["six-figure deal"],
+       "solves": "pricing a new or AI product so its first big deals land"}
     ],
     "rules": [
       "facts only: the opener states the dated event, nothing else",

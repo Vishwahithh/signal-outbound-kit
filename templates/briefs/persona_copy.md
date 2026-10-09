@@ -18,10 +18,18 @@ angle, the tier, read_first. Ignore the other insights; they lost.
    own_words exist, use them exactly, in quotes, as "you wrote"/"you said" with the month. Never "<Company>
    launched <X> in <month>." as a sentence on its own.
 2. The question: the angle, in your own words. One sentence. Something only this person can answer.
-3. Who the sender is, one clause naming THEIR sector, plus at most one proof line, verbatim, only if it fits their
-   sector (list below). If none fits, use proof_id null and no metric: a wrong-sector proof costs more than none.
-4. A light ask, different for each sibling at one company: "Worth comparing notes?", "Happy to share how others
-   handled it, if useful.", "Is this on your list this quarter?", "If it is live for you, 20 minutes?"
+3. Who the sender is, one clause naming THEIR sector, and at most one case from the proof list, chosen because the
+   PROBLEM it solved ("use when") matches the chosen insight. Sector only breaks ties. Tell it in your own sentence,
+   the way one peer tells another; the fixed facts (descriptor, numbers) must appear exactly and nothing may be added.
+   No "Recent work," lead-in. If no case's problem matches, proof_id null and no metric: a wrong-fit case reads as
+   template and costs more than none. No two siblings at one company get the same case.
+4. Close with a short offer tied to this email's question ("If it helps, I can show how they split the free and paid
+   parts."), under 15 words, different at every sibling. Never a closer from a fixed list: rotated stock closers were
+   the second thing blind reviewers spotted.
+- Lead into the case through the shared problem ("The same question came up with an enterprise platform business:
+  ..."), never a bare "One software business got +6.8%". A case from a distant sector with no bridge reads as merge.
+- Three short paragraphs (insight + question / who + case / close), never one block. No "I'm <sender>": the email is
+  signed, and the name twice reads as assembled.
 - Siblings at one company: different opening, question, proof and ask. One forwarded email must not expose the rest.
 - Hyper-personal test for every line: could it go to anyone at another company unchanged? Then rewrite it.
 - Accuracy: every fact matches the evidence it comes from; "so", "which means", "now that" only for a real cause.
@@ -32,7 +40,7 @@ angle, the tier, read_first. Ignore the other insights; they lost.
   "exciting"), no "congrats", no "I noticed", no "I hope", no "quick question", no "I imagine/suspect/my guess", no
   numbers about them beyond the evidence, never describe or judge their prices or business.
 
-## Proof lines (client-approved; copy the text exactly)
+## Proof cases (client-approved; match by the problem solved, keep the fixed facts exact)
 {{PROOF}}
 
 ## Output: one JSON line per person, appended to {{RUN_DIR}}/copy/<your batch>.jsonl

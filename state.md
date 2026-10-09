@@ -23,3 +23,11 @@
 **outcome:**  shuffled blind test, same 29 people: researched 7.07 vs 6.62, human 5.48 vs 5.45, "no reply" 7 vs 12, v4 won 15 / lost 9 / tied 5
 **status:**   shipped
 **postable:** yes, "splitting thinking from writing: why the AI's cold email got more specific when we stopped letting it read the research"
+
+## 2026-10-09
+**what:**     clean_people.py (names: company/person/title cleaning; verify: each contact against their own LinkedIn) + proof matched by the problem it solved (config proof gets solves + facts; copy_check checks facts, wording free)
+**why:**      vendor titles and employers were trusted unchecked; one fixed proof sentence on every email was the top blind-review tell
+**broke:**    Apify free plan caps runs at 10 items (first run returned only an error row); internal ACoAA... LinkedIn ids come back under vanity slugs, so lookup now uses every handle plus a name fallback; "SVP" vs "Senior vice president" false CHECK fixed with title abbreviation expansion
+**outcome:**  29 pilot contacts: 27 OK, 1 LEFT (CPO had moved to another company; his email had scored 8/10), 1 NO_PROFILE. Blind v4 vs v4.1 on 27: human 5.07 -> 6.19, no-reply 11 -> 4, won 16/lost 5/tied 6
+**status:**   shipped
+**postable:** yes, "our best-scoring cold email was going to a man who had left the company"

@@ -9,6 +9,11 @@ Stage 6 of PIPELINE.md, after signal review and email verification. Signal copy 
 email per company on the event; this writes one per PERSON, grounded in what that person has said and in the decision
 they now own.
 
+## 0. Clean and verify people first
+`python scripts/clean_people.py names` then `python scripts/clean_people.py verify`. Only verdict OK (and CHECK rows a
+human has read) go on. A person who has left is the most expensive mistake in persona copy: the best-researched
+email in the test went to someone who had moved company.
+
 ## 1. Dossiers
 - Build `runs/<run>/research/people_companies.json` from the reviewed signals and verified contacts (fields in the
   docstring of `scripts/person_research.py`; `company_linkedin` comes from the Prospeo company record).
@@ -29,7 +34,7 @@ it before the first copy run and reuse it.
 - Copy agents on `runs/<run>/briefs/persona_copy.md`, reading ONLY the insights file (not the dossiers), writing
   `runs/<run>/copy/<batch>.jsonl`. Keeping the writer away from the raw research stops it drifting to stock lines.
 - `python scripts/copy_check.py` and send every FAIL back to its agent. Common fails: subject over 4 words, an
-  undated fact, a reworded proof line.
+  undated fact, a proof whose fixed facts were changed.
 - The insights file doubles as the call prep sheet for whoever takes the meeting.
 
 ## 4. Blind score before anyone sends
@@ -43,5 +48,9 @@ Rewrite anything under 6. Lessons from scoring rounds:
 - Insight-first (v4) beat writing straight from the dossier (v3) in a shuffled blind test of the same 29 people:
   researched 7.1 vs 6.6, "would not reply" 7 vs 12. Human-sounding stayed level (5.5): the remaining template
   tells are the fixed proof sentence and rotating closers, so vary those next.
+- Then proof matched to the problem it solved, told in the writer's own words with the facts fixed, and a close
+  drawn from the email's own question (v4.1) beat v4 on the same 27 people: human 5.1 -> 6.2, "would not reply"
+  11 -> 4, won 16 / lost 5 / tied 6, both reviewers agreeing. What still reads as merge: a case from a distant
+  sector with no bridge sentence, one-block emails, and the sender's name twice.
 
 Then the client reads a sample before launch, as with every other stage.

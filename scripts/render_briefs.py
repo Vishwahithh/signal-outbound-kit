@@ -27,7 +27,9 @@ def values(cfg):
         "SIGNALS": "\n".join(sig),
         "SIGNAL_IDS": "|".join(s["id"] for s in cfg["signals"]),
         "PRIORITY": " > ".join(cfg["signal_priority"]),
-        "PROOF": "\n".join(f"   {p['id']} ({p['fits']}): {p['line']}" for p in cfg["copy"]["proof"]),
+        "PROOF": "\n".join(f"   {p['id']}: {p['line']}\n      use when the insight is about: {p.get('solves') or p.get('fits', '')}"
+                           + (f"\n      fixed, must appear exactly: {', '.join(p['facts'])}" if p.get("facts") else "")
+                           for p in cfg["copy"]["proof"]),
         "COPY_RULES": "\n".join(f"- {r}" for r in cfg["copy"]["rules"]),
         "VOC_BANK": cfg["copy"].get("voc_bank", "config/voc_bank.md"),
     }

@@ -12,7 +12,7 @@ fit. This kit grades first and pays later:
 
 ```
 spec -> source (native filters) -> suppress -> grade on own website -> signal research + human review
-     -> reveal verified emails for A/B only -> verify -> person research -> insights -> copy per person -> gate + blind score
+     -> reveal verified emails for A/B only -> verify -> clean names + check people on LinkedIn -> person research -> insights -> copy per person -> gate + blind score
      -> launch -> CRM cool-down and routing
 ```
 
@@ -29,6 +29,7 @@ See [PIPELINE.md](PIPELINE.md) for the gates and the lessons behind each one.
 | `scripts/firecrawl_refetch.py` | Re-read sites that blocked the free crawler |
 | `scripts/merge.py` | One lead master per run, with email-domain mismatch flags |
 | `scripts/mv_verify.py` | MillionVerifier bulk verification with resume (never re-upload) |
+| `scripts/clean_people.py` | `names`: company, person and title names fit to print (no emoji, taglines, "Ltd", ".io", LinkedIn banners), acquisitions named in the company name dropped. `verify`: each contact against their own LinkedIn profile, still at the company and in the role the vendor says (OK / CHECK / LEFT / NO_PROFILE), ~$0.004 each |
 | `scripts/person_research.py` | One dossier per company: buying group, each exec's own recent LinkedIn posts, the company's site, the reviewed signal (Apify, cents per company; optional Explorium events) |
 | `scripts/copy_check.py` | Deterministic gate on persona copy: length, banned phrases, proof verbatim, dated and sourced facts, subject, LinkedIn note |
 | `scripts/render_briefs.py` | Fill the agent briefs from the config, with signal windows as real dates |
@@ -60,6 +61,7 @@ python scripts/qualify_batches.py --all          # then grading agents on runs/<
 python scripts/merge.py
 python scripts/prospeo_harvest.py reveal --approved runs/<run>/approved.csv
 python scripts/merge.py && python scripts/mv_verify.py --input runs/<run>/leads_master.csv --label primary
+python scripts/clean_people.py names && python scripts/clean_people.py verify   # drop LEFT / NO_PROFILE, read every CHECK
 # research agents on runs/<run>/briefs/research.md, human review, then copy
 python scripts/person_research.py            # dossiers for reviewed companies (runs/<run>/research/people_companies.json)
 # insight agents on runs/<run>/briefs/insights.md, then copy agents on runs/<run>/briefs/persona_copy.md, then:
