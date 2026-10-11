@@ -31,3 +31,11 @@
 **outcome:**  29 pilot contacts: 27 OK, 1 LEFT (CPO had moved to another company; his email had scored 8/10), 1 NO_PROFILE. Blind v4 vs v4.1 on 27: human 5.07 -> 6.19, no-reply 11 -> 4, won 16/lost 5/tied 6
 **status:**   shipped
 **postable:** yes, "our best-scoring cold email was going to a man who had left the company"
+
+## 2026-10-11
+**what:**     sending side added: smartlead.py client, inbox_health.py (OFF / LOW / NEVER / CONNECT flags, warmup switch-on), seed_test.py (link/image guard, tracking off, one campaign per inbox), replies.py (quote-stripped buckets, bounce senders, unblocked opt-outs, Attio deals), monitor.py (bounce guard, 92% gate with the half-fleet rule, report only unless --act); deliverability, launch and replies skills
+**why:**      the kit stopped at copy; the sending-side tools only existed in a private, client-specific form
+**broke:**    an "Inbox Zero" cold-email filter notice was sorted OTHER; added to the auto-reply rule
+**outcome:**  read-only live test on a real account: inbox_health listed 57 inboxes (42 OK, 10 CONNECT, 5 NEVER), monitor + replies ran report-only, seed_test dry run passed and refused a bare domain
+**status:**   shipped
+**postable:** yes, "the morning script that pulls a weak inbox before it burns the domain"
