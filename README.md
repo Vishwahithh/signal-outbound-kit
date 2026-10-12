@@ -39,6 +39,7 @@ See [PIPELINE.md](PIPELINE.md) for the gates and the lessons behind each one.
 | `scripts/monitor.py` | Morning check: bounce guard, 92% inbox gate (never pulls more than half), replies that need a person; report only unless `--act` |
 | `scripts/attio_*.py` | Attio as the CRM: fields, import, cool-down, nightly score and route, deals |
 | `templates/reference/subject_lines.md` | Subject-line patterns that fit the rules (lower case, question-mark, open loop, event, problem, quarter) and the ones left out on purpose |
+| `templates/frameworks/` | Email shapes as plain-English slots (`{one dated fact ...}`), each with the evidence it rests on; pick one with `copy.framework` |
 | `templates/briefs/` | Agent briefs: grading, signal research, email one on the signal, insights (3 company + 3 person, scored with confidence), persona copy from one chosen insight |
 | `config/voc_bank.example.md` | Format for a voice-of-customer phrase bank: how the buyers really talk, used to shape questions, never quoted |
 | `.claude/skills/` | `market-map`, `signal-research`, `person-copy`, `deliverability`, `launch` and `replies` skills for Claude Code |
